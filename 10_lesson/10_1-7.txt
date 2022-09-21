@@ -1,0 +1,87 @@
+1
+(defun  FIRST_COL (L)
+(cond
+((null (cdr l)) (list (car (car l))))
+(T (cons (car (car l)) (first_col (cdr l))))
+))
+
+2
+(defun without_1_col (l)
+(cond
+((null (cdr l)) (list (cdr (car l))))
+(T (cons (cdr (car l)) (without_1_col (cdr l))))
+))
+
+3
+(defun TRANS(L)
+(cond
+((null (cdr (car l))) (list (first_col l)))
+(T (cons (first_col l) (trans (without_1_col l))))
+))
+
+4
+(defun f1(L1 L2)
+(cond
+((null (cdr L1)) (list (+ (car L1) (car L2))))
+(T (cons (+ (car L1) (car L2)) (f1 (cdr L1) (cdr L2))))
+))
+
+(defun MSUM(L1 L2)
+(cond
+((null (cdr L1)) (list (f1 (car L1) (car L2))))
+(T (cons (f1 (car L1) (car L2)) (msum (cdr L1) (cdr L2))))
+))
+
+
+5
+(defun m1(L1 L2)
+(cond
+((null(cdr L1)) (*(car L1)(car L2)))
+(T (+ (* (car L1) (car L2)) (m1 (cdr L1) (cdr L2)) ))
+))
+
+(defun m2(L1 L2)
+(cond
+((null (car(without_1_col L2))) (list (m1 L1 (first_col L2))))
+(T (cons (m1 L1 (first_col L2)) (m2 L1 (without_1_col L2))))
+))
+
+(defun mmult(L1 L2)
+(cond
+((null (cdr L1)) (list (m2 (car L1) L2)))
+(T (cons (m2 (car L1) L2) (mmult (cdr L1) L2)))
+))
+
+6
+(defun m_n_1 (N)
+(cond
+((= n 1) (list 0))
+(T (cons 0 (m_n_1 (- n 1))))
+))
+
+(defun m_n_2 (L)
+(cond
+((null (cdr L)) (list (append (car L) (list 0))))
+(T ( cons (append (car L) (list 0)) (m_n_2(cdr L))))
+))
+
+
+(defun M_O(N)
+(cond
+((= n 1) (list (list 1)))
+(T (append (m_n_2 (m_o (- n 1))) (list (append (m_n_1 (- n 1)) (list 1))) ))
+))
+
+
+7
+(defun m_t_1 (N)
+(cond
+((= n 1) (list 1))
+(T (cons 1 (m_t_1(- n 1))))
+))
+
+(defun M_T1(N)
+(cond
+((= n 1) (list (list 1)))
+(T (append (m_n_2(m_t1 (- n 1))) (list (append (m_t_1(- n 1)) (list 1))) ))
+))

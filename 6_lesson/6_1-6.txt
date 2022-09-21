@@ -1,0 +1,43 @@
+1
+(defun fac(n)
+(cond
+((= n 0) 1)
+(T (* n (fac(- n 1))))
+))
+
+2
+(defun sum(n)
+(cond
+((= n 0) 0)
+(T (+ n (sum (- n 1))))
+))
+
+3
+(defun fib(n)
+(cond
+((and (< n 2) (> n 0)) 1)
+((< n 1) 0)
+(T (+ (fib(- n 2)) (fib(- n 1))))
+))
+
+4
+(defun nod(a b)
+(cond
+((= b 0) a)
+(T (nod b (rem a b)))
+))
+
+5
+(defun fac_list(n)
+(cond
+((= n 1) (list 1))
+(T (merge(fac_list(- n 1)) (list(fac n))))
+))
+
+6
+(defun fib_list(n)
+(cond
+((= n 1) (list 1))
+(T (merge(fib_list(- n 1)) (list(fib n))))
+))
+

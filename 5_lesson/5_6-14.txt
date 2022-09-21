@@ -1,0 +1,65 @@
+6
+(defun count_atoms(l)
+(cond
+((null l) 0)
+((atom(car l))(+ 1(count_atoms(cdr l))))
+(T (count_atoms(cdr l)))
+))
+
+7
+(defun only_atoms(l)
+(cond
+((null l) '())
+((atom(car l))(cons(car l) (only_atoms(cdr l))))
+(T (only_atoms(cdr l)))
+))
+
+8
+(defun into_sort(x l)
+(cond
+((null l) (cons x ()))
+(( <= x (car l)) (cons x l))
+(T (cons (car l) (into_sort x (cdr l))))
+))
+
+9
+(defun my_sort(l)
+(cond
+((null l) ())
+(T (into_sort (car l) (my_sort (cdr l))))
+))
+
+10
+(defun my_merge (L R)
+(cond
+((null L) R)
+(T (my_merge (cdr L) (into_sort (car L) (my_sort R))))
+))
+
+11
+(defun max_list(L)
+(cond
+((null(cdr L)) car L)
+(T max((car L) (max_list(crd L))))
+))
+
+12
+(defun min_list(L)
+(cond
+((null(cdr L)) car L)
+(T min((car L) (min_list(crd L))))
+))
+
+13
+(defun sum_list(L)
+(cond
+((null L) 0)
+(T (+ (car L) (sum_list(cdr L))))
+))
+
+14
+(defun onion(n)
+(cond
+((= n 0) () )
+(T(list(onion(- n 1))))
+))
